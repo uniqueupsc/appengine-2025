@@ -39,33 +39,6 @@ pipeline {
         //     }
         // }
 
-         stage('Install Dependencies') {
-             steps {
-                 script {
-                     sh '''
-                     # Update apt package list
-                     sudo apt-get update -y
-                    
-                     # Install Python3 and development tools if not installed
-                     sudo apt-get install -y python3-pip python3-dev python3-venv bash
-                    
-                     # Create a virtual environment
-                     python3 -m venv venv
-                    
-                     # Activate the virtual environment
-                     . venv/bin/activate  # Using dot (.) instead of 'source'
-                    
-                     # Upgrade pip inside the virtual environment
-                     pip install --upgrade pip
-                    
-                     # Install dependencies from requirements.txt
-                     pip install -r requirements.txt
-                     '''
-                 }
-             }
-         }
-
-
 
         stage('Deploy to Google App Engine') {
             steps {
